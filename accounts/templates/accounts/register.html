@@ -147,6 +147,11 @@
                     <input type="text" name="access_code" class="form-control" id="access_code" required>
                     <div id="accesscodeError" class="invalid-feedback" style="display: none;"></div>
                   </div>
+
+                  <label>
+                    <input type="checkbox" name="agree_tos" required>
+                    I agree to the <a href="{% url 'tos' %}" target="_blank">Terms of Service</a>
+                  </label><br>
               
                   <div class="col-12">
                     <button class="btn btn-primary w-100" type="submit">Create Account</button>

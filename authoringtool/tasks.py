@@ -1199,7 +1199,7 @@ def compute_student_performance_metrics(scenario_id, group_ids, start_date, end_
 
     csv_data = []
     for user in valid_users:
-        row = [user.id, scenario.name]
+        row = [user.id, user.username, scenario.name]
         total_weighted_score = 0
         total_max_weighted_score = 0
 
@@ -1275,7 +1275,7 @@ def compute_student_performance_metrics(scenario_id, group_ids, start_date, end_
     # Generate CSV content
     csv_buffer = io.StringIO()
     csv_writer = csv.writer(csv_buffer)
-    header = ['User ID', 'Scenario Name']
+    header = ['User ID', 'Username', 'Scenario Name']
     for phase in phases:
         header.extend([f"{phase.name} Categorization", f"{phase.name} Time", f"{phase.name} Score"])
     header.append('Final Categorization')

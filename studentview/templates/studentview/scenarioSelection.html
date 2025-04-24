@@ -29,14 +29,21 @@
                 <h5 class="card-title">{{ scenario.name }}</h5>
                 <p class="card-text">{{ scenario.description }}</p>
                 {% if not is_teacher %}
-				  <a type="button"
-					 class="btn btn-outline-primary"
-					 href="{% url 'scenario_questions' scenario_id=scenario.id %}">Start</a>
-				{% else %}
-				  <a type="button"
-					 class="btn btn-outline-primary"
-					 href="{% url 'studentView' scenario_id=scenario.id %}">Start</a>
-				{% endif %}
+                  {% if scenario.has_answered_all_questions %}
+                    <a type="button"
+                       class="btn btn-outline-primary"
+                       href="{% url 'studentView' scenario_id=scenario.id %}">Start</a>
+                  {% else %}
+                    <a type="button"
+                       class="btn btn-outline-primary"
+                       href="{% url 'scenario_questions' scenario_id=scenario.id %}">Start</a>
+                  {% endif %}
+                {% else %}
+                  <a type="button"
+                     class="btn btn-outline-primary"
+                     href="{% url 'studentView' scenario_id=scenario.id %}">Start</a>
+                {% endif %}
+              </div>
             </div>
           </div>
         </div>
