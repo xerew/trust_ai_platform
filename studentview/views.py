@@ -195,8 +195,6 @@ def scenarios_view(request):
             Q(visibility_status='public') |  # Public scenarios
             Q(visibility_status='org', organizations__id__in=org_ids)  # Org-only scenarios the user is part of
         ).distinct()
-    # elif user.is_staff:
-    #     myScenarios = Scenario.objects.all()
     else:
         # If the user is not a teacher, only show scenarios assigned to their group
         user_memberships = UserGroupMembership.objects.filter(user=user)
@@ -205,6 +203,26 @@ def scenarios_view(request):
         myScenarios = Scenario.objects.filter(
             assigned_groups__id__in=group_ids  # Scenarios assigned to the groups the user is part of
         ).distinct()
+
+    # Get all questions
+    all_questions = MultilingualQuestion.objects.all()
+    # Get all answers for this user
+    user_answers = MultilingualAnswer.objects.filter(user=user)
+    
+    for scenario in myScenarios:
+    # Get answers for this specific scenario
+        scenario_answers = user_answers.filter(scenario=scenario)
+    
+        all_answered = True
+        for question in all_questions:
+            try:
+                scenario_answers.get(question=question)  # Just existence is enough
+            except MultilingualAnswer.DoesNotExist:
+                all_answered = False
+                break
+
+        # Add custom attribute to scenario
+        scenario.has_answered_all_questions = all_answered
 
     template = loader.get_template('studentview/scenarioSelection.html')
     context = {

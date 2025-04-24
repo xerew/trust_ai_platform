@@ -3,6 +3,7 @@ from django.urls import path
 from . import views
 from .views import CustomPasswordResetView
 from .forms import CustomSetPasswordForm
+from django.views.generic import TemplateView
 
 urlpatterns = [
     #path('login/', auth_views.LoginView.as_view(template_name='accounts/login.html'), name='login'),
@@ -20,4 +21,5 @@ urlpatterns = [
     ),
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
     path('documentation/', views.documentation_view, name='documentation_and_tutorials'),
+    path('tos/', views.tos_view, name='tos'),
 ]

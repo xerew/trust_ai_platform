@@ -36,7 +36,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-jg#w2d@#dd9#(cdt@@lm27&g612)iw5othvy+pdlyf(&m7-e_(r'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['13.51.155.65', 'trust-ai-lab.eu', '127.0.0.1']
 
@@ -100,7 +100,7 @@ WSGI_APPLICATION = 'faithDev.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'djangofaith',
+        'NAME': 'djangomarch25', #'djangofaith',
         'USER': 'postgres',
         'PASSWORD': 'root',
         'HOST': 'localhost',

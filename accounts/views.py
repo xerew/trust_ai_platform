@@ -145,3 +145,12 @@ def view404(request, exception):
 def documentation_view(request):
     is_dspace_partner = request.user.groups.filter(name="dspace_partners").exists()
     return render(request, 'accounts/documentation.html', {'is_dspace_partner': is_dspace_partner})
+
+def tos_view(request):
+    return render(request, 'accounts/tos.html')
+
+def tos_view(request):
+    if request.user.is_authenticated:
+        return render(request, 'accounts/tos.html')
+    else:
+        return render(request, 'accounts/tos_public.html')

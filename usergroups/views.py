@@ -330,7 +330,7 @@ def export_multilingual_answers_csv(request):
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="multilingual_answers.csv"'
 
-    writer = csv.writer(response)
+    writer = csv.writer(response, delimiter=';')
     
     # Get all distinct questions in consistent order
     questions = MultilingualQuestion.objects.all().order_by('order', 'created_on')
